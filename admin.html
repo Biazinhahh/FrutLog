@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <title>FrutLog - Administracao</title>
 </head>
+
 <body class="layout-dashboard">
   <aside class="sidebar">
     <div class="logo-area">
@@ -16,14 +18,16 @@
       <h2>FrutLog</h2>
     </div>
     <nav class="menu" aria-label="Menu administrativo">
-      <a href="#funcionarios" class="nav-link active"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Funcionarios</a>
+      <a href="#funcionarios" class="nav-link active"><i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+        Funcionarios</a>
       <a href="#sessoes" class="nav-link"><i class="fa-solid fa-signal" aria-hidden="true"></i> Usuarios Ativos</a>
       <a href="#mapa-fazenda" class="nav-link"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Mapa</a>
       <a href="#graficos" class="nav-link"><i class="fa-solid fa-chart-column" aria-hidden="true"></i> Graficos</a>
     </nav>
-    
+
     <div class="sidebar-acoes">
-      <button id="btn-logout" class="btn-logout" type="button"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Sair</button>
+      <button id="btn-logout" class="btn-logout" type="button"><i class="fa-solid fa-right-from-bracket"
+          aria-hidden="true"></i> Sair</button>
     </div>
   </aside>
 
@@ -51,7 +55,8 @@
           </div>
           <div class="item-detalhe-cadastro">
             <label class="label" for="funcionario-cargo">Cargo</label>
-            <input id="funcionario-cargo" name="cargo" class="campo-formulario" placeholder="Ex.: Tecnico agricola" required>
+            <input id="funcionario-cargo" name="cargo" class="campo-formulario" placeholder="Ex.: Tecnico agricola"
+              required>
           </div>
           <div class="item-detalhe-cadastro">
             <label class="label" for="funcionario-perfil">Perfil de acesso</label>
@@ -72,12 +77,14 @@
         </div>
         <p class="mensagem-feedback" id="mensagem-funcionario" aria-live="polite"></p>
         <div class="area-botao-cadastro">
-          <button type="submit" class="btn-primario"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Cadastrar Funcionario</button>
+          <button type="submit" class="btn-primario"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+            Cadastrar Funcionario</button>
         </div>
       </form>
 
       <div class="subsecao-admin">
-        <div class="titulo-cartao"><i class="fa-solid fa-address-book" aria-hidden="true"></i> Funcionarios Cadastrados</div>
+        <div class="titulo-cartao"><i class="fa-solid fa-address-book" aria-hidden="true"></i> Funcionarios Cadastrados
+        </div>
         <div class="tabela-responsiva">
           <table class="tabela-dados">
             <thead>
@@ -126,10 +133,14 @@
       <div class="mapa-container">
         <img src="imagem/mapa-FrutLog.jpg" alt="Mapa aereo dos talhoes" class="mapa-imagem">
         <svg class="camada-talhoes" viewBox="0 0 500 400" preserveAspectRatio="none" aria-hidden="true">
-          <polygon class="talhao-mapa selecionado status-normal" data-talhao="A1" points="180,135 278,14 298,18 340,55 285,120 260,140 202,141" />
-          <polygon class="talhao-mapa status-atencao" data-talhao="A2" points="116,120 136,127 172,127 195,142 240,147 235,215 185,215 145,205 115,190" />
-          <polygon class="talhao-mapa status-normal" data-talhao="B1" points="285,120 305,85 340,95 380,140 350,170 320,205 285,235 250,220 235,185 250,150 270,135" />
-          <polygon class="talhao-mapa status-critico" data-talhao="B2" points="75,85 115,120 187,107 230,105 220,85 280,5 230,5" />
+          <polygon class="talhao-mapa selecionado status-normal" data-talhao="A1"
+            points="180,135 278,14 298,18 340,55 285,120 260,140 202,141" />
+          <polygon class="talhao-mapa status-atencao" data-talhao="A2"
+            points="116,120 136,127 172,127 195,142 240,147 235,215 185,215 145,205 115,190" />
+          <polygon class="talhao-mapa status-normal" data-talhao="B1"
+            points="285,120 305,85 340,95 380,140 350,170 320,205 285,235 250,220 235,185 250,150 270,135" />
+          <polygon class="talhao-mapa status-critico" data-talhao="B2"
+            points="75,85 115,120 187,107 230,105 220,85 280,5 230,5" />
         </svg>
       </div>
 

@@ -48,18 +48,18 @@ const colheitaAnual = [
 ];
 
 const climaMensal = [
-  { mes: "Jan", temperatura: 33, chuva: 22 },
-  { mes: "Fev", temperatura: 32, chuva: 18 },
-  { mes: "Mar", temperatura: 31, chuva: 28 },
-  { mes: "Abr", temperatura: 30, chuva: 16 },
-  { mes: "Mai", temperatura: 29, chuva: 12 },
-  { mes: "Jun", temperatura: 28, chuva: 8 },
-  { mes: "Jul", temperatura: 29, chuva: 6 },
-  { mes: "Ago", temperatura: 31, chuva: 9 },
-  { mes: "Set", temperatura: 32, chuva: 14 },
-  { mes: "Out", temperatura: 33, chuva: 20 },
-  { mes: "Nov", temperatura: 32, chuva: 26 },
-  { mes: "Dez", temperatura: 31, chuva: 30 },
+  { mes: "Jan", temperatura: 33 },
+  { mes: "Fev", temperatura: 32 },
+  { mes: "Mar", temperatura: 31 },
+  { mes: "Abr", temperatura: 30 },
+  { mes: "Mai", temperatura: 29 },
+  { mes: "Jun", temperatura: 28 },
+  { mes: "Jul", temperatura: 29 },
+  { mes: "Ago", temperatura: 31 },
+  { mes: "Set", temperatura: 32 },
+  { mes: "Out", temperatura: 33 },
+  { mes: "Nov", temperatura: 32 },
+  { mes: "Dez", temperatura: 31 },
 ];
 
 let proximaMatriculaFuncionario = 4001;
@@ -164,14 +164,6 @@ function carregarGraficos() {
             tension: 0.35,
             fill: true,
           },
-          {
-            label: "Chuva (mm)",
-            data: climaMensal.map((item) => item.chuva),
-            borderColor: "#1976d2",
-            backgroundColor: "rgba(25, 118, 210, 0.10)",
-            tension: 0.35,
-            fill: true,
-          },
         ],
       },
       options: {
@@ -180,5 +172,89 @@ function carregarGraficos() {
         scales: { y: { beginAtZero: true } },
       },
     });
-  }
+  };
 }
+
+/* =========================================================
+  FRUTLOG - CHATBOT FLUTUANTE
+  ========================================================= */
+
+document.addEventListener("DOMContentLoaded", configurarChatbot);
+
+function configurarChatbot() {
+  const botaoToggle = document.getElementById("chatbot-toggle");
+  const card = document.getElementById("chatbot-card");
+  const botaoFechar = document.getElementById("chatbot-fechar");
+  const formulario = document.getElementById("chatbot-form");
+  const campo = document.getElementById("chatbot-input");
+  const areaMensagens = document.getElementById("chatbot-mensagens");
+
+  if (!botaoToggle || !card) return;
+
+  let saudacaoEnviada = false;
+
+  function abrir() {
+    card.hidden = false;
+    botaoToggle.setAttribute("aria-expanded", "true");
+    if (!saudacaoEnviada) {
+      adicionarMensagem("Olá! Sou o assistente do FrutLog. Como posso ajudar?", "bot");
+      saudacaoEnviada = true;
+    }
+    campo.focus();
+  }
+
+  function fechar() {
+    card.hidden = true;
+    botaoToggle.setAttribute("aria-expanded", "false");
+    botaoToggle.focus();
+  }
+
+  function adicionarMensagem(texto, tipo) {
+    const msg = document.createElement("div");
+    msg.className = `chatbot-msg ${tipo}`;
+    msg.textContent = texto; // textContent evita injeção de HTML
+    areaMensagens.appendChild(msg);
+    areaMensagens.scrollTop = areaMensagens.scrollHeight;
+    return msg;
+  }
+
+  async function obterResposta(pergunta) {
+    // TODO: trocar pela chamada real ao backend/IA, por exemplo:
+    // const resposta = await FrutLog.apiFetch("/chat", {
+    //   method: "POST",
+    //   body: JSON.stringify({ mensagem: pergunta }),
+    // });
+    // return resposta.texto;
+
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    return `Você disse: "${pergunta}". (Resposta simulada, falta conectar ao backend.)`;
+  }
+
+  botaoToggle.addEventListener("click", () => (card.hidden ? abrir() : fechar()));
+  botaoFechar.addEventListener("click", fechar);
+
+  document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape" && !card.hidden) fechar();
+  });
+
+  formulario.addEventListener("submit", async (evento) => {
+    evento.preventDefault();
+    const texto = campo.value.trim();
+    if (!texto) return;
+
+    adicionarMensagem(texto, "usuario");
+    campo.value = "";
+
+    const digitando = adicionarMensagem("Digitando...", "bot digitando");
+
+    try {
+      const resposta = await obterResposta(texto);
+      digitando.remove();
+      adicionarMensagem(resposta, "bot");
+    } catch (erro) {
+      digitando.remove();
+      adicionarMensagem("Não consegui responder agora. Tente novamente.", "bot");
+    }
+  });
+}
+
