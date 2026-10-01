@@ -89,6 +89,30 @@
   min-height: 320px;
 }
 
+.chatbot {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+
+  width: 56px;
+  height: 56px;
+  border: none; 
+  border-radius: 50%;
+
+  background-color: var(--cor-destaque, #2e7d32);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.chatbot:hover {
+  transform: scale(1.08);
+}
+
 @media (max-width: 760px) {
   .admin-graficos {
     grid-template-columns: 1fr;

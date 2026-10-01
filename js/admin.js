@@ -175,4 +175,8 @@ function carregarGraficos() {
   };
 }
 
+// Procura o botão pelo id e guarda na variável
+document.getElementById("chatbot")?.addEventListener("click", () => {
+  // aqui entra o código do chatbot (abrir o card, etc.)
+});
 
